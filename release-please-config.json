@@ -1,9 +1,6 @@
 {
   "packages": {
-    "kong-github-auth": {
-      "release-type": "simple"
-    },
-    "kong-oidc": {
+    "rocks/kong-github-auth": {
       "release-type": "simple"
     }
   }
