@@ -4,11 +4,10 @@ on:
   push:
     branches:
       - main
-    paths:
-      - /**
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   release_please:
