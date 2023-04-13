@@ -1,9 +1,7 @@
 {
+  "monorepo-tags": true,
   "packages": {
     "kong-github-auth": {
-      "release-type": "simple"
-    },
-    "kong-oidc": {
       "release-type": "simple"
     }
   }
