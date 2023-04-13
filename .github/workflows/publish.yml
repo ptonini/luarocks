@@ -4,11 +4,10 @@ on:
   push:
     branches:
       - main
-    paths:
-      - /**
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   release_please:
@@ -23,17 +22,17 @@ jobs:
       matrix:
         path: ${{ fromJSON(needs.release_please.outputs.paths_released) }}
     steps:
-      - uses: leafo/gh-actions-lua@v9
-      - uses: leafo/gh-actions-luarocks@v4
       - uses: actions/checkout@v3
       - uses: actions/download-artifact@v3
         with:
           name: release-please-outputs
-      - run: echo "PACKAGE=$(echo "${{ matrix.path }}" | awk -F/ '{ print $2 }' )" | tee -a $GITHUB_ENV
+      - run: echo "PACKAGE=$(echo "${{ matrix.path }}" | awk -F/ '{ print $1 }' )" | tee -a $GITHUB_ENV
       - run: echo "VERSION=$(jq -r --arg A "${{ matrix.path }}--version" '.[$A]' outputs)" | tee -a $GITHUB_ENV
       - run: echo "TAG_NAME=$(jq -r --arg A "${{ matrix.path }}--tag_name" '.[$A]' outputs)" | tee -a $GITHUB_ENV
-      - run: envsubst < rockspec > ${PACKAGE}-${VERSION}-1.rockspec
-      - run: luarocks pack ${PACKAGE}-${VERSION}-1.rockspec
+      - run: envsubst < ${{ matrix.path }}/rockspec > ${PACKAGE}-${VERSION}-1.rockspec
+      - uses: leafo/gh-actions-lua@v9
+      - uses: leafo/gh-actions-luarocks@v4
+      - run: luarocks pack ${{ env.PACKAGE }}-${{ env.VERSION }}-1.rockspec
       - uses: actions/upload-artifact@v3
         with:
           name: rocks
@@ -49,8 +48,6 @@ jobs:
     needs:
       - publish_rocks
     steps:
-      - uses: leafo/gh-actions-lua@v9
-      - uses: leafo/gh-actions-luarocks@v4
       - uses: actions/checkout@v3
         with:
           ref: gh-pages
@@ -59,7 +56,9 @@ jobs:
         with:
           name: rocks
           path: gh-pages
-      - run: luarocks-admin make-manifest --local-tree
+      - uses: leafo/gh-actions-lua@v9
+      - uses: leafo/gh-actions-luarocks@v4
+      - run: luarocks-admin make-manifest --local-tree ./gh-pages
       - uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: gh-pages
