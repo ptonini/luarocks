@@ -10,5 +10,15 @@ repository = {
             arch = "src"
          }
       }
+   },
+   ["kong-oidc"] = {
+      ["1.0.0-1"] = {
+         {
+            arch = "rockspec"
+         },
+         {
+            arch = "src"
+         }
+      }
    }
 }
