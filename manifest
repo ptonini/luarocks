@@ -1,0 +1,14 @@
+commands = {}
+modules = {}
+repository = {
+   ["kong-github-auth"] = {
+      ["1.0.0-1"] = {
+         {
+            arch = "rockspec"
+         },
+         {
+            arch = "src"
+         }
+      }
+   }
+}
