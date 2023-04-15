@@ -7,10 +7,6 @@ local OidcHandler = {
   PRIORITY = 1000,
 }
 
-function OidcHandler:new()
-  OidcHandler.super.new(self, "oidc")
-end
-
 function OidcHandler:access(config)
   OidcHandler.super.access(self)
   local oidcConfig = utils.get_options(config, ngx)
