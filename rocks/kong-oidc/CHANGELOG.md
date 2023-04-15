@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/ptonini/luarocks/compare/kong-oidc-v1.0.3...kong-oidc-v1.0.4) (2023-04-15)
+
+
+### Bug Fixes
+
+* **kong-oidc:** removed OidcHandler super call ([a044e38](https://github.com/ptonini/luarocks/commit/a044e386300f78a9a05576d99eb3751820a972fb))
+
 ## [1.0.3](https://github.com/ptonini/luarocks/compare/kong-oidc-v1.0.2...kong-oidc-v1.0.3) (2023-04-15)
 
 
