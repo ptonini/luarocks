@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/ptonini/luarocks/compare/kong-oidc-v1.0.1...kong-oidc-v1.0.2) (2023-04-15)
+
+
+### Bug Fixes
+
+* **kong-oidc:** updated schema format ([87eaace](https://github.com/ptonini/luarocks/commit/87eaace0b7f367b19c6ed48dea78032c5d94f368))
+
 ## [1.0.1](https://github.com/ptonini/luarocks/compare/kong-oidc-v1.0.0...kong-oidc-v1.0.1) (2023-04-14)
 
 
