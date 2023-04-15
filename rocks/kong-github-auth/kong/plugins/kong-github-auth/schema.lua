@@ -15,6 +15,7 @@ return {
         { allowed_methods = { type = "array", elements = typedefs.http_method }, },
         { allowed_origins = { type = "array", elements = typedefs.ip }, },
         { allowed_paths = { type = "array", elements = typedefs.path }, },
-      }, }, },
+      }, },
+    },
   },
 }
