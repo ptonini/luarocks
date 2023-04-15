@@ -1,14 +1,17 @@
 package = "kong-github-auth"
 version = "${VERSION}-1"
+
 source = {
     url = "file://${GITHUB_WORKSPACE}/rocks/kong-github-auth.tar.gz",
 }
+
 description = {
     summary = "",
     detailed = [[ ]],
     homepage = "https://ptonini.github.io/luarocks",
     license = "Apache 2.0"
 }
+
 dependencies = {
     "luasec",
     "luasocket",

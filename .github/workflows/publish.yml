@@ -22,20 +22,6 @@ jobs:
     with:
       path: ${{ matrix.path }}
   update_repository:
-    runs-on: ubuntu-latest
+    uses: ptonini/gha-workflows/.github/workflows/publish-lua-rock.yaml@main
     needs:
       - publish_rocks
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: gh-pages
-      - uses: leafo/gh-actions-lua@v9
-      - uses: leafo/gh-actions-luarocks@v4
-      - uses: actions/download-artifact@v3
-        with:
-          name: rocks
-      - run: luarocks-admin make-manifest --local-tree ${{ github.workspace }}
-      - run: cat manifest
-      - uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: .
