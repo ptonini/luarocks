@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/ptonini/luarocks/compare/kong-oidc-v1.0.2...kong-oidc-v1.0.3) (2023-04-15)
+
+
+### Bug Fixes
+
+* **kong-oidc:** removed OidcHandler constructor call ([fc34f5f](https://github.com/ptonini/luarocks/commit/fc34f5f6f360c8bdd3638e1171790b1cf628c677))
+
 ## [1.0.2](https://github.com/ptonini/luarocks/compare/kong-oidc-v1.0.1...kong-oidc-v1.0.2) (2023-04-15)
 
 
