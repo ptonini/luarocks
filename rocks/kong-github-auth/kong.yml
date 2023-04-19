@@ -1,0 +1,16 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+  - name: test-service
+    url: https://eu.httpbin.org/
+    routes:
+      - name: test
+        paths:
+          - /
+
+plugins:
+  - name: kong-github-auth
+    service: test-service
+    config:
+      organization: nodis-com-br

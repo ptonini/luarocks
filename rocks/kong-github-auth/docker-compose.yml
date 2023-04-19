@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  kong:
+    image: kong:3.2
+    environment:
+      KONG_DATABASE: "off"
+      KONG_PROXY_LISTEN : 0.0.0.0:8000
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+      KONG_DECLARATIVE_CONFIG: /tmp/kong.yml
+      KONG_PLUGINS: kong-github-auth
+    ports:
+      - "8001:8001"
+      - "8000:8000"
+      - "8443:8443"
+    volumes:
+      - ./kong.yml:/tmp/kong.yml
+      - ./kong/plugins/kong-github-auth:/usr/local/share/lua/5.1/kong/plugins/kong-github-auth
