@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - master
     paths:
       - rocks/**
 
@@ -11,14 +12,17 @@ jobs:
   release_please:
     uses: ptonini/gha-workflows/.github/workflows/release-please.yaml@main
     if: github.event_name == 'push'
+
+  detect_changes:
+    uses: ptonini/gha-workflows/.github/workflows/paths-filter.yaml@main
+
   publish_rocks:
-    uses: ptonini/gha-workflows/.github/workflows/publish-lua-rock.yaml@main
-    if: needs.release_please.outputs.paths_released != '[]'
+    if: github.event_name == 'push' && contains(github.event.commits.*.author.name, 'github-actions[bot]') && needs.detect_changes.outputs.changes != '[]'
     needs:
-      - release_please
+      - detect_changes
     strategy:
       matrix:
-        path: ${{ fromJSON(needs.release_please.outputs.paths_released) }}
+        path: ${{ fromJSON(needs.detect_changes.outputs.changes) }}
     with:
       path: ${{ matrix.path }}
   update_repository:
