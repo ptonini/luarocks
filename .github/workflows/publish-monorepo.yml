@@ -1,0 +1,32 @@
+name: publish
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - rocks/**
+
+jobs:
+  detect_changes:
+    uses: ptonini/gha-workflows/.github/workflows/detect-changes.yaml@main
+    if: github.event_name == 'pull_request'
+
+  release_please:
+    uses: ptonini/gha-workflows/.github/workflows/release-please.yaml@main
+    if: github.event_name == 'push'
+  publish_rocks:
+    uses: ptonini/gha-workflows/.github/workflows/publish-monorepo-luarocks.yaml@main
+    if: needs.release_please.outputs.paths_released != '[]'
+    needs:
+      - release_please
+    strategy:
+      matrix:
+        path: ${{ fromJSON(needs.release_please.outputs.paths_released) }}
+    with:
+      path: ${{ matrix.path }}
+  update_repository:
+    uses: ptonini/gha-workflows/.github/workflows/update-rocks-repository.yaml@main
+    needs:
+      - publish_rocks
