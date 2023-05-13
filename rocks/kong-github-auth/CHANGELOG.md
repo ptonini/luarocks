@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/ptonini/luarocks/compare/kong-github-auth-v1.0.1...kong-github-auth-v1.0.2) (2023-04-19)
+
+
+### Bug Fixes
+
+* **kong-github-auth:** workflow test [#2](https://github.com/ptonini/luarocks/issues/2) ([ed92c60](https://github.com/ptonini/luarocks/commit/ed92c6052d56156c3fb95ae8ef190334b0b8f1af))
+
 ## [1.0.1](https://github.com/ptonini/luarocks/compare/kong-github-auth-v1.0.0...kong-github-auth-v1.0.1) (2023-04-15)
 
 
